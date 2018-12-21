@@ -1,12 +1,20 @@
-var time = 0;
+// takes a function as a parameter
+function callFunction(fun) {
+    fun();
+}
 
-var timer = setInterval(function(){
-    time += 2;
-    console.log(time + ' seconds have passed');
-    if (time > 5) {
-        clearInterval(timer);
-    }
-}, 2000
+// // normal function statement
+// function sayHI() {
+//     console.log('hi');
+// }
 
-// console.log(__dirname);
-// console.log(__filename);
+// sayHI();
+
+
+// function expression
+var sayBye = function() {
+    console.log('bye');
+};
+
+callFunction(sayBye);
+
