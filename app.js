@@ -1,32 +1,12 @@
-var fs = require('fs');
+var http = require("http");
 
-        // delete a file using node 'fs.unlink' method
-// fs.unlink('writeMe.txt');
-        
-        // asyncronous versions of creating/deleting directories
-        // create a directory using node 'fs.mkdirSync' method
-// fs.mkdirSync('stuff');
+var server = http.createServer(function(req, res){
+        console.log('request was made ' + req.url);
+        // create response headers
+        res.writeHead(200, {'Content-Type' : 'text/plain'});
+        res.end('Hey ninjago');
+});
 
-        // deletes a directory using node 'rmdirSync' method
-// fs.rmdirSync('stuff');
-
-
-        // syncronous versions of creating/deleting directories
-        // reads a file, and creates a new directory and a file in that new directory to store the read text
-// fs.mkdir('stuff', function(){
-//   fs.readFile('readMe.txt', 'utf8', function(err, data){
-//       fs.writeFile('./stuff/writeMe.txt', data); 
-//   }); 
-// });
-
-        // remove a file and its parent direcotory
-// fs.unlink('./stuff/writeMe.txt', function(){
-//     fs.rmdir('stuff');
-// })
-
-
-
-
-
-
-
+server.listen(process.env.PORT, process.env.IP, function() {
+    console.log('yo dawgs, now lstening to port 8080');
+});
