@@ -1,17 +1,20 @@
 var express = require("express");
-
 var app = express();
 
-app.get('/', function(req, res){
-   res.send('this is the homepage')     
-});
-   
-app.get('/contact', function(req, res){
-   res.send('this is the contactpage');  
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+        res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/profile/:name', function(req, res){
-        res.send('you requested to see the profile with the name of ' + req.params.name);         
+app.get('/contact', function(req, res) {
+        res.sendFile(__dirname + '/contacts.html');
 });
+
+app.get('/profile/:name', function(req, res) {
+        var data = {age: 29, job: 'ninja'};
+        res.render('profile', { person: req.params.name, data: data });
+});
+
 app.listen(process.env.PORT, process.env.IP);
 
